@@ -1,0 +1,9 @@
+{
+  "accepted-licenses": ["android-sdk-license-5be876d5"],
+  "archives": {
+    "build-tools-22.0.1": "build-tools/22.0.1",
+    "android-22": "platforms/android-22",
+    "extra-google-m2repository": "extras/google/m2repository",
+    "extra-android-m2repository": "extras/android/m2repository"
+  }
+}

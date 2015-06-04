@@ -1,0 +1,14 @@
+{
+  "ConfigVersion": "0.9",
+  "AppName": "go-get-android-sdk-tools",
+  "OutPath": "build/{{.Arch}}/{{.Os}}/{{.AppName}}",
+  "PackageVersion": "0.0.1",
+  "Os": "linux darwin windows",
+  "Arch": "amd64",
+  "BuildSettings": {
+    "LdFlags": "-s",
+    "LdFlagsXVars": {
+      "Version": "main.VERSION"
+    }
+  }
+}
