@@ -8,6 +8,7 @@ import (
 type config struct {
 	AcceptedLicenses []string          `json:"accepted-licenses"`
 	Archives         map[string]string `json:"archives"`
+	AlwaysInstall    []string          `json:"always-install"`
 }
 
 func readConfig(configPath string) (c config, err error) {

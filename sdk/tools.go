@@ -16,19 +16,26 @@ var licenseRegex = regexp.MustCompile(`Do you accept the license '(.*-license-.*
 
 // Tools wrapper for android sdk manager
 type Tools struct {
-	path     string
-	licenses map[string]bool
+	path          string
+	licenses      map[string]bool
+	alwaysInstall map[string]bool
 }
 
-func NewTools(path string, licenses []string) Tools {
+func NewTools(path string, licenses, alwaysInstall []string) Tools {
 	licensesMap := map[string]bool{}
 	for _, license := range licenses {
 		licensesMap[license] = true
 	}
 
+	alwaysInstallMap := map[string]bool{}
+	for _, archive := range alwaysInstall {
+		alwaysInstallMap[archive] = true
+	}
+
 	return Tools{
-		path:     path,
-		licenses: licensesMap,
+		path:          path,
+		licenses:      licensesMap,
+		alwaysInstall: alwaysInstallMap,
 	}
 }
 
@@ -77,6 +84,10 @@ func (t Tools) InstallVersion(name, version string) (err error) {
 
 func (t Tools) Update(name string) (err error) {
 	log.Print("Updating ", name)
+	if t.alwaysInstall[name] {
+		return t.Install(name)
+	}
+
 	if err = t.acceptLicense(t.android("update", "sdk", "-u", "-t", name)); err == io.EOF {
 		return nil
 	}

@@ -36,7 +36,7 @@ func checkErr(err error) {
 }
 
 func run(toolsPath string, config config) (err error) {
-	tools := sdk.NewTools(toolsPath, config.AcceptedLicenses)
+	tools := sdk.NewTools(toolsPath, config.AcceptedLicenses, config.AlwaysInstall)
 
 	if !tools.IsToolsInstalled() {
 		if err = installTools(toolsPath); err != nil {
